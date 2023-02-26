@@ -1,11 +1,15 @@
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
 spring:
   datasource:
     url: jdbc:mysql://${springboot_webapp6_db:localhost}:3306/springboot_book_db
     username: root
-    password: ###
+    password: ENC(LOsE61xDZuxjZZl125SyTAgtfoMClHZyda5nqMqpnwFhVc07PCtpcch1eNpSW0KF)
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQL8Dialect
-
       ddl-auto: update
+
+
