@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,10 @@ public class Book {
 
     @Column(name = "isbn", nullable = false)
     private String isbn;
+
+   @ManyToMany
+   @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors;
 
 }
