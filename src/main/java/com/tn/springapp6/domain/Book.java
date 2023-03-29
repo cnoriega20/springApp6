@@ -20,6 +20,9 @@ public class Book {
     @Column(name = "idBook", nullable = false)
     private Long id;
 
+    @Column(name = "title", nullable = false)
+    private String title;
+
     @Column(name = "isbn", nullable = false)
     private String isbn;
 
