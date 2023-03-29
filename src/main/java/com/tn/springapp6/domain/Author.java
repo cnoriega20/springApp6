@@ -1,14 +1,13 @@
 package com.tn.springapp6.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -16,7 +15,7 @@ import java.util.Set;
 public class Author {
     @Id
     @Column(name = "idAuthor", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "firstName")
@@ -25,7 +24,7 @@ public class Author {
     @Column(name = "lastName")
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    @ManyToMany(mappedBy = "authors", cascade = {CascadeType.ALL})
+    private Set<Book> books =  new HashSet<>();
 
 }
