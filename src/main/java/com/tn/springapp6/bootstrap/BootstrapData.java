@@ -36,11 +36,16 @@ public class BootstrapData implements CommandLineRunner {
                 .lastName("Freeman")
                 .build();
 
-        book1.getAuthors().add(author1);
-        book1.getAuthors().add(author2);
+        if(null != book1.getAuthors()) {
+            book1.getAuthors().add(author1);
+            book1.getAuthors().add(author2);
+        }
 
-        author1.getBooks().add(book1);
-        author2.getBooks().add(book1);
+        if(null != author1.getBooks() && null != author2.getBooks()) {
+            author1.getBooks().add(book1);
+            author2.getBooks().add(book1);
+        }
+
 
         bookRepository.save(book1);
 
