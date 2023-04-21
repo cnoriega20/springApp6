@@ -23,40 +23,49 @@ public class BootstrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args)  {
-        Author author1 = Author.builder()
-                .firstName(" Craig ")
-                .lastName("Walls")
-                .build();
         Book book1  = Book.builder()
                 .title("Spring in Action, Sixth Edition 6th Edition")
                 .isbn("978-1492078005")
                 .build();
-
-        Author authorSaved1 = authorRepository.save(author1);
-        Book bookSaved1 = bookRepository.save(book1);
-
+        Author author1 = Author.builder()
+                .firstName(" Craig ")
+                .lastName("Walls")
+                .build();
         Author author2 = Author.builder()
                 .firstName(" Eric")
                 .lastName("Freeman")
                 .build();
 
-        Book book2 = Book.builder()
+        book1.getAuthors().add(author1);
+        book1.getAuthors().add(author2);
+
+        author1.getBooks().add(book1);
+        author2.getBooks().add(book1);
+
+        bookRepository.save(book1);
+
+        //Author authorSaved1 = authorRepository.save(author1);
+       // Book bookSaved1 = bookRepository.save(book1);
+
+
+
+       /* Book book2 = Book.builder()
                 .title("Head First Design Patterns")
                 .isbn("978-1492018004")
-                .build();
+                .build();*/
 
-        Author authorSaved2 = authorRepository.save(author2);
-        Book bookSaved2 = bookRepository.save(book2);
+        /*Author authorSaved2 = authorRepository.save(author2);
+        Book bookSaved2 = bookRepository.save(book2);*/
 
-        authorSaved1.getBooks().add(bookSaved1);
+        /*authorSaved1.getBooks().add(bookSaved1);
         authorSaved2.getBooks().add(bookSaved2);
 
         authorRepository.save(authorSaved1);
-        authorRepository.save(authorSaved2);
+        authorRepository.save(authorSaved2);*/
 
 
         log.info("In Bootstrap..");
-        log.info("Author count: {}", authorRepository.count());
+        log.info("Book count: {}", bookRepository.count());
         log.info("BookC");
 
     }

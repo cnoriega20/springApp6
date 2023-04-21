@@ -15,7 +15,7 @@ import java.util.Set;
 public class Author {
     @Id
     @Column(name = "idAuthor", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "firstName")
@@ -24,7 +24,7 @@ public class Author {
     @Column(name = "lastName")
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors", cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books =  new HashSet<>();
 
 }
