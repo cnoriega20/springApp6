@@ -2,8 +2,10 @@ package com.tn.springapp6.bootstrap;
 
 import com.tn.springapp6.domain.Author;
 import com.tn.springapp6.domain.Book;
+import com.tn.springapp6.domain.Publisher;
 import com.tn.springapp6.repositories.AuthorRepository;
 import com.tn.springapp6.repositories.BookRepository;
+import com.tn.springapp6.repositories.PublisherRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -15,16 +17,19 @@ public class BootstrapData implements CommandLineRunner {
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
 
-    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    private final PublisherRepository publisherRepository;
+
+    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
 
     @Override
     public void run(String... args)  {
         Book book1  = Book.builder()
-                .title("Spring in Action, Sixth Edition 6th Edition")
+                .title("Spring in Action, Seventh Edition 7th Edition")
                 .isbn("978-1492078005")
                 .build();
         Author author1 = Author.builder()
@@ -68,9 +73,27 @@ public class BootstrapData implements CommandLineRunner {
         authorRepository.save(authorSaved1);
         authorRepository.save(authorSaved2);*/
 
+        Publisher pub1 = Publisher.builder()
+                .publisherName("Marvel")
+                .address("LA")
+                .city("LA")
+                .state("CA")
+                .zipcode("10002")
+                .build();
+
+        Publisher pub2 = Publisher.builder()
+                .publisherName("DC")
+                .address("WA")
+                .city("Seattle")
+                .state("WA")
+                .zipcode("11002")
+                .build();
+        publisherRepository.save(pub1);
+        publisherRepository.save(pub2);
 
         log.info("In Bootstrap..");
         log.info("Book count: {}", bookRepository.count());
+        log.info("Publisher count: {}",publisherRepository.count());
         log.info("BookC");
 
     }
