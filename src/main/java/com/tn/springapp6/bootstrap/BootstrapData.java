@@ -94,7 +94,7 @@ public class BootstrapData implements CommandLineRunner {
         log.info("In Bootstrap..");
         log.info("Book count: {}", bookRepository.count());
         log.info("Publisher count: {}",publisherRepository.count());
-        log.info("BookC");
+
 
     }
 }
